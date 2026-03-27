@@ -21,3 +21,15 @@ Follow these steps to get the project running on your machine:
 ```bash
 git clone https://github.com/joanaraposo96/petstore-search-add-to-cart.git
 cd petstore-search-view-add-to-cart
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Run the Playwright test**
+```bash
+npx playwright test --ui
+```
+
