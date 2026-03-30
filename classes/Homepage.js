@@ -9,7 +9,7 @@ class Homepage {
     }
 
     async navigateToHomepage() {
-        await this.page.goto("https://petstore.octoperf.com/actions/Catalog.action");
+        await this.page.goto('https://petstore.octoperf.com/actions/Catalog.action');
     }
 
     async expectLoggedIn() {

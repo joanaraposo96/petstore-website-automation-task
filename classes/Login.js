@@ -3,6 +3,7 @@ import Homepage from "./Homepage";
 class Login extends Homepage {
     constructor(page) {
         super(page);
+        
             this.username = page.locator('input[name="username"]');
             this.password = page.locator('input[name="password"]');
             this.buttonLogin = page.locator('input[name="signon"]');

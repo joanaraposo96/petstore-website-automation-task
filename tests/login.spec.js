@@ -12,20 +12,18 @@ test.describe('Login tests', () => {
     homepage = new Homepage(page);
 
     await homepage.navigateToHomepage();
-    await expect(homepage.page).toHaveTitle("JPetStore Demo");
-
+    await expect(homepage.page).toHaveTitle('JPetStore Demo');
   });
 
   test('login and logout successfuly', async ({ page }) => {
-    await login.logIntoAccount("user96", "test123");
+    await login.logIntoAccount('user96', 'test123');
     await homepage.expectLoggedIn();
     await login.logOutFromAccount();
     await homepage.expectLoggedOut();
-
   });
 
   test('login with invalid credentials', async ({ page }) => {
-    await login.logIntoAccount("user9", "test123"); //invalid username + invalid password
+    await login.logIntoAccount('user9', 'test1234'); //invalid username + invalid password
     await expect(login.loginErrorMessage).toBeVisible();
   });
 });
