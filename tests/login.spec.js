@@ -25,8 +25,7 @@ test.describe('Login tests', () => {
   });
 
   test('login with invalid credentials', async ({ page }) => {
-
-    await login.logIntoAccount("user96", "test1234"); //wrong password
-    
+    await login.logIntoAccount("user9", "test123"); //invalid username + invalid password
+    await expect(login.loginErrorMessage).toBeVisible();
   });
 });
