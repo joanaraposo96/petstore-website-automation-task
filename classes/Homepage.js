@@ -1,10 +1,6 @@
 import { expect } from "@playwright/test";
 
 class Homepage {
-    page;
-    buttonSignOut;
-    buttonMyAccount;
-
     constructor(page) {
         this.page = page;
         this.buttonSignOut = page.locator('text=Sign Out');

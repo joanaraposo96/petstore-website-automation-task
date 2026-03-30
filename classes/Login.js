@@ -1,21 +1,12 @@
 import Homepage from "./Homepage";
 
 class Login extends Homepage {
-    page;
-    username;
-    password;
-    buttonSignIn;
-    buttonSignOut;
-    loginErrorMessage;
-
     constructor(page) {
-        this.page = page;
-        this.buttonSignIn = page.locator('text=Sign In');
-        this.username = page.locator('input[name="username"]');
-        this.password = page.locator('input[name="password"]');
-        this.buttonLogin = page.locator('input[name="signon"]');
-        this.buttonSignOut = page.locator('text=Sign Out');
-        this.loginErrorMessage = page.locator('text=Invalid username or password.  Signon failed.');
+        super(page);
+            this.username = page.locator('input[name="username"]');
+            this.password = page.locator('input[name="password"]');
+            this.buttonLogin = page.locator('input[name="signon"]');
+            this.loginErrorMessage = page.locator('text=Invalid username or password.  Signon failed.');
     }
 
     async logIntoAccount(username, password) {
@@ -35,7 +26,7 @@ class Login extends Homepage {
     }
 
     async loginUnsuccessful() {
-        await this.loginErrorMessage();
+        await expect(this.loginErrorMessage).toBeVisible();
     }
 }
 
