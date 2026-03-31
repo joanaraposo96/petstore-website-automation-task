@@ -17,7 +17,7 @@ test.describe('Register Account', () => {
   test('Register a new Account', async ({ page }) => {
     await homepage.signInOptions();
     await register.clickToRegister();
-    await register.createUserAccount(
+    await register.createUserAccount( //comments are added here to know which field is being affected if we were to change the data
       'user', //usermame
       'pa$$w0rd', //password
       'pa$$w0rd', //repeated password
