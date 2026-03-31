@@ -1,5 +1,4 @@
 import Homepage from "./Homepage";
-import { randomUUID } from 'crypto';
 
 class Register extends Homepage {
     constructor(page) {
@@ -45,7 +44,7 @@ class Register extends Homepage {
         zip, 
         country
     ) {
-        await this.username.fill(username + randomUUID());
+        await this.username.fill(username + Date.now());
         await this.newPassword.fill(password);
         await this.repeatedPassword.fill(repeatedPassword);
         await this.firstName.fill(firstName);

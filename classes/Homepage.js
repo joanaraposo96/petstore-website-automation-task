@@ -6,6 +6,7 @@ class Homepage {
         this.buttonSignOut = page.locator('text=Sign Out');
         this.buttonMyAccount = page.locator('text=My Account');
         this.buttonSignIn = page.locator('text=Sign In');
+        this.welcomeMessage = page.locator('div[id="WelcomeContent"]');
     }
 
     async navigateToHomepage() {
@@ -13,11 +14,13 @@ class Homepage {
     }
 
     async expectLoggedIn() {
+        await expect(this.welcomeMessage).toBeVisible();
         await expect(this.buttonSignOut).toBeVisible();
         await expect(this.buttonMyAccount).toBeVisible();
     }
 
     async expectLoggedOut() {
+        await expect(this.welcomeMessage).not.toBeVisible();
         await expect(this.buttonSignIn).toBeVisible();
         await expect(this.buttonMyAccount).not.toBeVisible();
     }

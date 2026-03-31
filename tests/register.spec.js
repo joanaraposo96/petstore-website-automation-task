@@ -31,7 +31,7 @@ test.describe('Register Account', () => {
       'State',
       '000-111',
       'Country'
-      )
-
+    )
+    await homepage.expectLoggedOut();
   });
 });
