@@ -17,5 +17,21 @@ test.describe('Register Account', () => {
   test('Register a new Account', async ({ page }) => {
     await homepage.buttonSignIn.click();
     await register.clickToRegister();
+    await register.createUserAccount(
+      'user', 
+      'pa$$w0rd', 
+      'pa$$w0rd', 
+      'firstName',
+      'lastName',
+      'email@gmail.com',
+      '000111222',
+      'Adress1',
+      'Address2', 
+      'City',
+      'State',
+      '000-111',
+      'Country'
+      )
+
   });
 });

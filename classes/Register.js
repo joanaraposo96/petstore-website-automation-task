@@ -22,11 +22,12 @@ class Register extends Homepage {
             this.language = page.locator('select[name="account.languagePreference"]');
             this.category = page.locator('select[name="account.favouriteCategoryId"]');
             this.myList = page.locator('input[name="account.listOption"]');
-            this.myBanner = page.locator('input[nmame="account.bannerOption"]');
+            this.myBanner = page.locator('input[name="account.bannerOption"]');
+            this.saveAccountInformation = page.locator('input[name="newAccount"]');
     }
 
     async clickToRegister() {
-        this.buttonRegister.click();
+        await this.buttonRegister.click();
     }
 
     async createUserAccount(
@@ -46,9 +47,9 @@ class Register extends Homepage {
     ) {
         await this.username.fill(username + randomUUID());
         await this.newPassword.fill(password);
-        await his.repeatedPassword.fill(repeatedPassword);
+        await this.repeatedPassword.fill(repeatedPassword);
         await this.firstName.fill(firstName);
-        await his.lastName.fill(lastName);
+        await this.lastName.fill(lastName);
         await this.email.fill(email);
         await this.phone.fill(phone);
         await this.address1.fill(address1);
@@ -58,17 +59,23 @@ class Register extends Homepage {
         await this.zip.fill(zip);
         await this.country.fill(country);
 
-        //select random option execept for default value -> 'japanese'
-        const options1 = await this.language.locator('option').filter({ hasNotText: 'english' }); //stores locator options
-        const count1 = await options1.count();
-        const randomIndex1 = Math.floor(Math.random() * count1);
-        options1.nth(randomIndex1).click();
+        //select random option execept for 'english' default value using playwright selectOption method
+        const allValues = await this.language.locator('option').allTextContents();
+        const filtered = allValues.filter(text => text !== 'english');
+        const randomValue = filtered[Math.floor(Math.random() * filtered.length)];
+        const retrieveIndex = allValues.indexOf(randomValue);
+        await this.language.selectOption({ index: retrieveIndex });
 
-        //select random option execept for default value -> 'DOGS', 'REPTILES', 'CATS' or 'BIRDS'
-        const options2 = await this.category.locator('option').filter({ hasNotText: 'FISH'});
-        const count2 = await options2.count();
-        const randomIndex2 = Math.floor(Math.random() * count2);
-        options2.nth(randomIndex2).click();
+        //select random option execept for 'FISH' default value using playwright selectOption method
+        const convertLocatorsToStrings = await this.category.locator('option').allTextContents(); // convert locators to an array of strings ['FISH', 'DOGS', 'REPTILES', CATS', 'DOGS']
+        const filteredArray = convertLocatorsToStrings.filter(text => text != 'FISH'); // exlcudes 'FISH' from array -> [DOGS', 'REPTILES', CATS', 'DOGS']
+        const randomStringFromFilteredArray = filteredArray[Math.floor(Math.random() * filteredArray.length)]; // selects random string from array e.g., 'CATS'
+        const retrieveIndexFromOriginalArray = convertLocatorsToStrings.indexOf(randomStringFromFilteredArray); // search for the random string index in original array - > [3]
+        await this.category.selectOption({ index: retrieveIndexFromOriginalArray }); //selects element in position [3]
+
+        await this.myList.check();
+        await this.myBanner.check();
+        await this.saveAccountInformation.click();
     }
 }
 
