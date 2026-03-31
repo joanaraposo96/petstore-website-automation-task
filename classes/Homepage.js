@@ -13,13 +13,17 @@ class Homepage {
         await this.page.goto('https://petstore.octoperf.com/actions/Catalog.action');
     }
 
-    async expectLoggedIn() {
+    async expectTitle() {
+        await expect(this.page).toHaveTitle('JPetStore Demo');
+    }
+
+    async expectHomepageLoggedIn() {
         await expect(this.welcomeMessage).toBeVisible();
         await expect(this.buttonSignOut).toBeVisible();
         await expect(this.buttonMyAccount).toBeVisible();
     }
 
-    async expectLoggedOut() {
+    async expectHomepageLoggedOut() {
         await expect(this.welcomeMessage).not.toBeVisible();
         await expect(this.buttonSignIn).toBeVisible();
         await expect(this.buttonMyAccount).not.toBeVisible();

@@ -12,14 +12,14 @@ test.describe('Login tests', () => {
     homepage = new Homepage(page);
 
     await homepage.navigateToHomepage();
-    await expect(homepage.page).toHaveTitle('JPetStore Demo');
+    await homepage.expectTitle();
   });
 
   test('login and logout successfuly', async ({ page }) => {
     await login.logIntoAccount('user96', 'test123');
-    await homepage.expectLoggedIn();
+    await homepage.expectHomepageLoggedIn();
     await login.logOutFromAccount();
-    await homepage.expectLoggedOut();
+    await homepage.expectHomepageLoggedOut();
   });
 
   test('login with invalid credentials', async ({ page }) => {

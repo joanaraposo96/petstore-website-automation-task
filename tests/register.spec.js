@@ -11,7 +11,7 @@ test.describe('Register Account', () => {
     register = new Register(page);
 
     await homepage.navigateToHomepage();
-    await expect(homepage.page).toHaveTitle('JPetStore Demo');
+    await homepage.expectTitle();
   });
 
   test('Register a new Account', async ({ page }) => {
@@ -23,7 +23,7 @@ test.describe('Register Account', () => {
       'pa$$w0rd', 
       'firstName',
       'lastName',
-      'email@gmail.com',
+      'email@domain.com',
       '000111222',
       'Adress1',
       'Address2', 
@@ -32,6 +32,6 @@ test.describe('Register Account', () => {
       '000-111',
       'Country'
     )
-    await homepage.expectLoggedOut();
+    await homepage.expectHomepageLoggedOut();
   });
 });
