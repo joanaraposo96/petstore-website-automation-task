@@ -24,6 +24,10 @@ class Login extends Homepage {
     async loginSuccessful() {
         await this.expectLoggedIn();
     }
+
+    async expectLoginErrorMessage() {
+        await expect(this.loginErrorMessage).toBeVisible();
+    }
 }
 
 export default Login
