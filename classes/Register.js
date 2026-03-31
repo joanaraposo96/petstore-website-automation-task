@@ -59,14 +59,14 @@ class Register extends Homepage {
         await this.zip.fill(zip);
         await this.country.fill(country);
 
-        //select random option execept for 'english' default value using playwright selectOption method
+        //select random option except for 'english' default value using playwright selectOption method
         const allValues = await this.language.locator('option').allTextContents();
         const filtered = allValues.filter(text => text !== 'english');
         const randomValue = filtered[Math.floor(Math.random() * filtered.length)];
         const retrieveIndex = allValues.indexOf(randomValue);
         await this.language.selectOption({ index: retrieveIndex });
 
-        //select random option execept for 'FISH' default value using playwright selectOption method
+        //select random option except for 'FISH' default value using playwright selectOption method
         const convertLocatorsToStrings = await this.category.locator('option').allTextContents(); // convert locators to an array of strings ['FISH', 'DOGS', 'REPTILES', CATS', 'DOGS']
         const filteredArray = convertLocatorsToStrings.filter(text => text != 'FISH'); // exlcudes 'FISH' from array -> [DOGS', 'REPTILES', CATS', 'DOGS']
         const randomStringFromFilteredArray = filteredArray[Math.floor(Math.random() * filteredArray.length)]; // selects random string from array e.g., 'CATS'
