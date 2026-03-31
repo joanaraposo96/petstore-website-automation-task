@@ -18,19 +18,19 @@ test.describe('Register Account', () => {
     await homepage.signInOptions();
     await register.clickToRegister();
     await register.createUserAccount(
-      'user', 
-      'pa$$w0rd', 
-      'pa$$w0rd', 
-      'firstName',
-      'lastName',
-      'email@domain.com',
-      '000111222',
-      'Adress1',
-      'Address2', 
-      'City',
-      'State',
-      '000-111',
-      'Country'
+      'user', //usermame
+      'pa$$w0rd', //password
+      'pa$$w0rd', //repeated password
+      'firstName', //first name
+      'lastName', //last name
+      'email@domain.com', //email
+      '000111222', //phone
+      'Adress1', //address 1
+      'Address2', //address 2
+      'City', //city
+      'State', //state
+      '000-111', //zip code
+      'Country' //country
     )
     await homepage.expectHomepageLoggedOut();
   });
