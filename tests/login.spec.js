@@ -16,6 +16,7 @@ test.describe('Login tests', () => {
   });
 
   test('login and logout successfuly', async ({ page }) => {
+    await homepage.signInOptions();
     await login.logIntoAccount('user96', 'test123');
     await homepage.expectHomepageLoggedIn();
     await login.logOutFromAccount();

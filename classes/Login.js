@@ -11,7 +11,6 @@ class Login extends Homepage {
     }
 
     async logIntoAccount(username, password) {
-        await this.buttonSignIn.click();
         await this.password.clear();
         await this.username.fill(username);
         await this.password.fill(password);

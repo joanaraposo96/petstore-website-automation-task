@@ -15,7 +15,7 @@ test.describe('Register Account', () => {
   });
 
   test('Register a new Account', async ({ page }) => {
-    await homepage.buttonSignIn.click();
+    await homepage.signInOptions();
     await register.clickToRegister();
     await register.createUserAccount(
       'user', 

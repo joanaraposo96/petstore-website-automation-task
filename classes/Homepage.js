@@ -17,6 +17,10 @@ class Homepage {
         await expect(this.page).toHaveTitle('JPetStore Demo');
     }
 
+    async signInOptions() {
+        await this.buttonSignIn.click();
+    }
+
     async expectHomepageLoggedIn() {
         await expect(this.welcomeMessage).toBeVisible();
         await expect(this.buttonSignOut).toBeVisible();
