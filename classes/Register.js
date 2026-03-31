@@ -60,14 +60,14 @@ class Register extends Homepage {
 
         //select random option except for 'english' default value using playwright selectOption method
         const allValues = await this.language.locator('option').allTextContents();
-        const filtered = allValues.filter(text => text !== 'english');
+        const filtered = allValues.filter(value => value !== allValues[0]);
         const randomValue = filtered[Math.floor(Math.random() * filtered.length)];
         const retrieveIndex = allValues.indexOf(randomValue);
         await this.language.selectOption({ index: retrieveIndex });
 
         //select random option except for 'FISH' default value using playwright selectOption method
         const convertLocatorsToStrings = await this.category.locator('option').allTextContents(); // convert locators to an array of strings ['FISH', 'DOGS', 'REPTILES', CATS', 'DOGS']
-        const filteredArray = convertLocatorsToStrings.filter(text => text != 'FISH'); // exlcudes 'FISH' from array -> [DOGS', 'REPTILES', CATS', 'DOGS']
+        const filteredArray = convertLocatorsToStrings.filter(value => value !== convertLocatorsToStrings[0]); // exlcudes 'FISH' from array -> [DOGS', 'REPTILES', CATS', 'DOGS']
         const randomStringFromFilteredArray = filteredArray[Math.floor(Math.random() * filteredArray.length)]; // selects random string from array e.g., 'CATS'
         const retrieveIndexFromOriginalArray = convertLocatorsToStrings.indexOf(randomStringFromFilteredArray); // search for the random string index in original array - > [3]
         await this.category.selectOption({ index: retrieveIndexFromOriginalArray }); //selects element in position [3]
