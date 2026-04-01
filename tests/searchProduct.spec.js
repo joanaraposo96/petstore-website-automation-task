@@ -24,7 +24,7 @@ test.describe('Search Products', () => {
   test('Successfuly search for a random product', async ({ page }) => {
     await homepage.navigateToHomepage();
     await product.searchPet('fish');
-    await product.expectSearchToBeSuccessful();
+    await product.expectSearchContainResults();
     await product.randomSelectedItem();
   });
 });
