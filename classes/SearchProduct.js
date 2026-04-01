@@ -16,7 +16,7 @@ class SearchProduct extends Homepage {
         const nameTableDataLocator = this.nameTableData(value); // The searched value now equals the value passed onto this.nameTableData(productName) function.
     }
 
-    async expectSearchContainResults() {
+    async expectSearchToContainResults() {
         await expect(nameTableDataLocator).toBeVisible(); // If there are any corresponding search results, that data will be shown under the "Name" table.
     }
 
