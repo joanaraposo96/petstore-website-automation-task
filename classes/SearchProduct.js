@@ -3,21 +3,22 @@ import Homepage from "./Homepage";
 
 class SearchProduct extends Homepage {
     constructor(page) {
-        this.searchField = page.locator('input[name="keyword"]');
-        this.searchButton = page.locator('input[name="searchProducts"]');
-        this.linkToProductDescription = (productDescription) => page.locator(`tbody a:has-text(${productDescription})`); 
-        // this.nameTableData is a function, NOT a locator yet!
-        this.nameTableData = (productName) => page.locator(`tbody td:has-text(${productName})`); // Check if the element’s text CONTAINS the given string.
-    }
+        super(page);
+            this.searchField = page.locator('input[name="keyword"]');
+            this.searchButton = page.locator('input[name="searchProducts"]');
+            this.linkToProductDescription = (productDescription) => page.locator(`tbody a:has-text(${productDescription})`); 
+            // this.nameTableData is a function, NOT a locator yet!
+            this.nameTableData = (productName) => page.locator(`tbody td:nth-child(3):has-text("${productName}")`); // Check if the element’s text CONTAINS the given string.
+        }
 
-    async searchPet(value){
+    async searchPet(value) {
+        this.searchedValue = value;
         await this.searchField.fill(value);
         await this.searchButton.click();
-        const nameTableDataLocator = this.nameTableData(value); // The searched value now equals the value passed onto this.nameTableData(productName) function.
     }
 
     async expectSearchToContainResults() {
-        await expect(nameTableDataLocator).toBeVisible(); // If there are any corresponding search results, that data will be shown under the "Name" table.
+        await expect(this.nameTableData(this.searchedValue).first()).toBeVisible(); // Data should be shown under "Name" table if there are any corresponding search results.
     }
 
     async selectRandomProduct() {

@@ -25,6 +25,6 @@ test.describe('Search Products', () => {
     await homepage.navigateToHomepage();
     await product.searchPet('fish');
     await product.expectSearchToContainResults();
-    await product.randomSelectedItem();
+    await product.selectRandomProduct();
   });
 });
